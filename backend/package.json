@@ -1,0 +1,25 @@
+{
+  "name": "jmi-mun",
+  "version": "1.0.0",
+  "description": "Website for JMI MUN 2020.",
+  "main": "build/Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AzimJaved/jmi-mun.git"
+  },
+  "author": "Azim Javed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AzimJaved/jmi-mun/issues"
+  },
+  "homepage": "https://github.com/AzimJaved/jmi-mun#readme",
+  "dependencies": {
+    "@types/node": "^12.7.11",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  }
+}
