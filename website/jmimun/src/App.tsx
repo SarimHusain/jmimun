@@ -7,18 +7,25 @@ import Home from './components/Home'
 import Contact from './components/Contact'
 import Header from './components/partials/Header'
 import Footer from './components/partials/Footer'
+import { BrowserRouter } from 'react-router-dom';
 
 
 export class App extends Component {
   static contextType = AppContext
   context!: React.ContextType<typeof AppContext>
 
-  render(){
+  render() {
     return (
-      <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/contact" component={Contact}/>
-      </Switch>
+      <div>
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/contact" component={Contact} />
+          </Switch>
+          <Footer />
+        </BrowserRouter>
+      </div>
     )
   }
 }

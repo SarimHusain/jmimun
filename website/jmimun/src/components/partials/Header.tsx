@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-
+import '../static/partials/Header.css'
 
 export default class Header extends Component {
     state = {
@@ -22,19 +22,21 @@ export default class Header extends Component {
     render() {
         return (
             <header>
-                <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden readOnly />
-                <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
-                
-                <div className="sidebar">
-                    <nav className="sidebar-nav">
-                        <Link onClick={this.toggleSidebar} to={'/'}>Home</Link>
-                        <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
+                <div className="container">
+                    <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden readOnly />
+                    <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
+
+                    <div className="sidebar">
+                        <nav className="sidebar-nav">
+                            <Link onClick={this.toggleSidebar} to={'/'}>Home</Link>
+                            <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
+                        </nav>
+                    </div>
+                    <nav className="desktop-nav">
+                        <Link to={'/'}>Home</Link>
+                        <Link to={'/contact'}>Contact</Link>
                     </nav>
                 </div>
-                <nav className="desktop-nav">
-                    <Link to={'/'}>Home</Link>
-                    <Link to={'/contact'}>Contact</Link>
-                </nav>
             </header>
         )
     }
