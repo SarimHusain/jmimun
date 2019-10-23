@@ -6,7 +6,16 @@ export default class Header extends Component {
     state = {
         sidebar: {
             isOpen: false
+        },
+        navbar: {
+            scrollPos: window.pageYOffset,
+            atTop: true,
+            isVisible: true
         }
+    }
+
+    componentDidMount() {
+        window.onscroll = this.handleScroll
     }
 
     toggleSidebar = () => {
@@ -19,10 +28,18 @@ export default class Header extends Component {
         })
     }
 
+    handleScroll = () => {
+        let { navbar } = this.state;
+        navbar.isVisible = navbar.scrollPos > window.pageYOffset
+        navbar.scrollPos = window.pageYOffset
+        navbar.atTop = !navbar.scrollPos
+        this.setState(navbar)
+    }
+
     render() {
         return (
             <header>
-                <div className="container">
+                <div className="container mobile">
                     <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden readOnly />
                     <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
 
@@ -32,7 +49,10 @@ export default class Header extends Component {
                             <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
                         </nav>
                     </div>
-                    <nav className="desktop-nav">
+                </div>
+                <div className={"container desktop" + (this.state.navbar.atTop ? ' black' : '')}>
+                    <nav className={'desktop-nav' + (!this.state.navbar.isVisible ? ' hidden' : '')}>
+                        <Link to={'/'}>JMIMUN</Link>
                         <Link to={'/'}>Home</Link>
                         <Link to={'/contact'}>Contact</Link>
                     </nav>
