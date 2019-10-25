@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import '../static/partials/Header.css'
+import '../static/styles/partials/Header.css'
 
 export default class Header extends Component {
     state = {
@@ -39,23 +39,24 @@ export default class Header extends Component {
     render() {
         return (
             <header>
-                <div className="container mobile">
+                <div className={"container" + (this.state.navbar.atTop ? ' top' : '') + (!this.state.navbar.isVisible ? ' hidden' : '')}>
                     <input type="checkbox" checked={this.state.sidebar.isOpen} id="sidebar-toggle" hidden readOnly />
+                    <div className="sidebar-shadow"></div>
                     <label htmlFor="sidebar-toggle" className="hamburger" onClick={this.toggleSidebar}><span></span></label>
-
+                    <div className="logo-mobile"><img src="/img/jmimun-jmi.svg" alt="" className="jmi"/><img src="/img/jmimun-mun.svg" alt="" className={"mun"+(this.state.navbar.atTop?' top':'')}/></div>
                     <div className="sidebar">
                         <nav className="sidebar-nav">
                             <Link onClick={this.toggleSidebar} to={'/'}>Home</Link>
                             <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
                         </nav>
                     </div>
-                </div>
-                <div className={"container desktop" + (this.state.navbar.atTop ? ' black' : '')}>
-                    <nav className={'desktop-nav' + (!this.state.navbar.isVisible ? ' hidden' : '')}>
-                        <Link to={'/'}>JMIMUN</Link>
-                        <Link to={'/'}>Home</Link>
-                        <Link to={'/contact'}>Contact</Link>
-                    </nav>
+                    <div className="navbar">
+                        <nav className='desktop-nav'>
+                            <Link to={'/'}><img src="/img/jmimun-jmi.svg" alt="" className="logo jmi"/><img src="/img/jmimun-mun.svg" alt="" className={"logo mun"+(this.state.navbar.atTop?' top':'')}/></Link>
+                            <Link to={'/'}>Home</Link>
+                            <Link to={'/contact'}>Contact</Link>
+                        </nav>
+                    </div>
                 </div>
             </header>
         )

@@ -1,0 +1,26 @@
+footer {
+    background-color: #000;
+    height: 20em;
+    width: 100%;
+    bottom:0;
+    
+}
+footer .container {
+    display: flex;
+    padding: 5em;
+    flex-direction: row;
+    align-items: center;
+    margin: auto auto;
+    color: #fff;
+    justify-content: center;
+}
+
+footer .social {
+    align-self: center;
+}
+
+footer .social a{
+    text-decoration: none;
+    margin: 1em;
+    color:white;
+}

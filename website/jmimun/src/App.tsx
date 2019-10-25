@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { AppContext } from './AppContext';
 import { Switch, Route } from 'react-router';
@@ -8,6 +7,7 @@ import Contact from './components/Contact'
 import Header from './components/partials/Header'
 import Footer from './components/partials/Footer'
 import { BrowserRouter } from 'react-router-dom';
+import './components/static/styles/App.css'
 
 
 export class App extends Component {

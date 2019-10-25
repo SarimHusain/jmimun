@@ -4,32 +4,66 @@ body {
 
 header {
   z-index: 50;
+  padding-bottom: 4em;
 }
 
 header .container {
-  padding: 2em;
+  position: fixed;
+  height: 4em;
+  width: 100%;
+  top: 0;
+  background-color: #000;
+  border-bottom: #9b9999 solid 1px;
+  transition: all 0.75s ease;
+}
+
+header .container.hidden {
+  top: -7em !important;
+  transition: all 0.5s ease;
+}
+
+header .container.top {
+  background-color: #fff;
+  transition: all 0.5s ease;
 }
 
 .hamburger {
   display: block;
   margin: auto 0 auto auto;
   height: 100%;
-  padding: 1em;
-  padding-right: 0.5em;
-  justify-self: center;
-  align-self: flex-end;
-  z-index: 11000;
+  padding: 2em;
+  padding-left: 1.5em;
+  z-index: 12000;
 }
-
-.hamburger span, .hamburger span::before, .hamburger span::after {
+.logo-mobile{
   display: block;
-  position: relative;
+  margin: auto 0 auto auto;
+  position: absolute;
+  top:1em;
+  right: 1em;
+  z-index: 8000;
+}
+.logo-mobile .mun{
+  filter: none;
+  transition: all 0.75s ease;
+}
+.logo-mobile .mun.top{
+  filter: invert(100);
+  transition: all 0.75s ease;
+}
+.top .hamburger span, .top .hamburger span::before, .top .hamburger span::after {
   background: #000;
-  height: 2px;
-  width: 25px;
   transition: all 0.25s ease;
 }
-
+ .hamburger span, .hamburger span::before, .hamburger span::after {
+  display: block;
+  position: relative;
+  background: #fff;
+  height: 2px;
+  width: 25px;
+  z-index: 11000;
+  transition: all 0.25s ease;
+}
 .hamburger span::before, .hamburger span::after {
   content: '';
   position: absolute;
@@ -37,16 +71,12 @@ header .container {
 
 .hamburger span::before {
   bottom: 7px;
+  z-index: 11000;
 }
 
 .hamburger span::after {
   top: 7px;
-}
-
-#sidebar-toggle:checked~.hamburger {
-  position: fixed;
-  top: 1.85em;
-  right: 1em;
+  z-index: 11000;
 }
 
 #sidebar-toggle:checked~.hamburger span::before {
@@ -66,8 +96,9 @@ header .container {
 /* LOGO ----------------------------- */
 
 header .logo {
-  font-size: 1.5em;
   margin: 0.5em 0.25em;
+  margin-right: 0.1em;
+  margin-left: 0.1em;
 }
 
 /* SIDEBAR MENU --------------------- */
@@ -77,9 +108,9 @@ header .logo {
   height: 100vh;
   width: 0;
   top: 0;
-  right: 0;
+  left: 0;
   opacity: 0;
-  z-index: 10000;
+  z-index: 9000;
   max-width: 300px;
   background: linear-gradient(rgb(92, 168, 230), #223986);
   transition: all 0.25s ease;
@@ -99,7 +130,7 @@ header .logo {
   animation: show 0.25s ease reverse;
   width: 100vw;
   height: 100vh;
-  margin: -1em;
+  padding: 0 !important;
   z-index: 9000;
 }
 
@@ -119,8 +150,6 @@ header .logo {
   }
 }
 
-/* NAVIGATION */
-
 header .sidebar-nav {
   display: flex;
   flex-direction: column;
@@ -138,7 +167,6 @@ header .sidebar-nav a {
   margin: 1em;
   font-weight: 400;
   text-decoration: none;
-  /* text-transform: uppercase; */
 }
 
 #sidebar-toggle:checked~.sidebar li {
@@ -152,20 +180,13 @@ header .sidebar-nav a {
 
 /* DESKTOP MENU --------------------- */
 
-.desktop-nav {
+header .desktop-nav {
   display: none;
 }
 
 @media (min-width: 800px) {
-  header .container.mobile{
+  header .logo-mobile{
     display:none;
-  }
-  header {
-    margin-bottom: 2em;
-  }
-  header .container.desktop.black{
-    background-color: #000;
-    transition: all 0.5s ease;
   }
   header .container {
     flex-direction: column;
@@ -180,20 +201,19 @@ header .sidebar-nav a {
   header .hamburger {
     display: none;
   }
-  header .logo {
-    font-size: 3em;
-    margin: 2rem;
-  }
   header .desktop-nav {
-    display: inline-block;
+    display: flex;
     font-weight: 400;
-    position: fixed;
-    top: 1.6em;
+    position: absolute;
     transition: all 0.5s ease;
   }
+  header .desktop-nav img {
+    margin-top: -0.5em;
+  }
   header .desktop-nav a {
-    color: #707070;
+    color: #007fb9;
     margin: 2.5em;
+    margin-top: 1.7em;
     font-weight: 400;
     text-decoration: none;
     transition: all 0.5s ease;
@@ -202,8 +222,12 @@ header .sidebar-nav a {
     color: #285aff;
     transition: all 0.5s ease;
   }
-  header .desktop-nav.hidden {
-    top:-50px !important;
-    transition: all 0.5s ease;
+  header .desktop-nav .mun{
+    filter: none;
+    transition: all 0.75s ease;
+  }
+  header .desktop-nav .mun.top{
+    filter: invert(100);
+    transition: all 0.75s ease;
   }
 }
