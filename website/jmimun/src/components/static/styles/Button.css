@@ -1,0 +1,19 @@
+.button {
+    width: 8em;
+    margin: auto;
+    padding: 1em;
+    max-width: 400px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125em;
+    border: none;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 5px #1c1c1c40;
+    position: relative;
+  }
+  .button:focus, .button:active {
+    outline: none;
+  }
+  .button:active {
+    transform: scale(0.95);
+  }
+  

@@ -1,0 +1,17 @@
+.committee .container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 2em;
+}
+
+.title{
+    padding: 3em;
+    padding-bottom: 0;
+    border-bottom: 2px solid #007fb9;
+}
+
+.committee .container .content{
+    max-width: 60%;
+    font-size:1.2em;
+}
