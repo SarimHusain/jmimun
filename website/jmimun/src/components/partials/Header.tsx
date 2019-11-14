@@ -55,7 +55,7 @@ export default class Header extends Component {
                             <Link to={'/'}><img src="/img/jmimun-jmi.svg" alt="" className="logo jmi"/><img src="/img/jmimun-mun.svg" alt="" className={"logo mun"+(this.state.navbar.atTop?' top':'')}/></Link>
                             <Link to={'/'}>Home</Link>
                             <div className="dropdown">
-                                <a href="#">Committees</a>
+                                <Link to={'/committees'}>Committees</Link>
                                 <div className="dropdown-content">
                                     <Link to={'/committee/unga'}>UNGA</Link>
                                     <Link to={'/committee/unsc'}>UNSC</Link>

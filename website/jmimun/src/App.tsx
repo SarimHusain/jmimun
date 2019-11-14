@@ -17,6 +17,7 @@ import ECOSOC from './pages/ECOSOC';
 import WW3 from './pages/WW3';
 import AIPPM from './pages/AIPPM';
 import Register from './pages/Register';
+import { Committees } from './pages/Committees';
 
 
 export class App extends Component {
@@ -32,6 +33,7 @@ export class App extends Component {
             <Route exact path="/" component={Home} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/committees" component={Committees}/>
             <Route exact path="/committee/unga" component={UNGA}/>
             <Route exact path="/committee/unsc" component={UNSC}/>
             <Route exact path="/committee/unhrc" component={UNHRC}/>

@@ -1,17 +1,28 @@
-.committee .container{
+.committees .container{
     display: flex;
-    justify-content: center;
     align-content: center;
-    margin-bottom: 2em;
+    justify-content: center;
+    text-align: center;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin: 1em;
 }
 
+.committees .container h3 {
+    padding-bottom: 1em;
+    padding-top: 0.5em;
+}
+.committees .container .card-container{
+    border: 2px solid #007fb9;
+    width: 24em;
+    height: 20em;
+    max-width: 40%;
+    padding : 1em;
+    margin: 1em;
+    vertical-align: bottom;
+}
 .title{
     padding: 3em;
     padding-bottom: 0;
     border-bottom: 2px solid #007fb9;
-}
-
-.committee .container .content{
-    max-width: 60%;
-    font-size:1.2em;
 }

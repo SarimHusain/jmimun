@@ -1,0 +1,57 @@
+.committee .container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 2em;
+}
+
+.title{
+    padding: 3em;
+    padding-bottom: 0;
+    border-bottom: 2px solid #007fb9;
+}
+
+.committee .container .content{
+    max-width: 60%;
+    font-size:1.2em;
+}
+
+.matrix {
+    width: 60%;
+}
+.matrix-table {
+    overflow: scroll;
+    width: 100%;
+    border-collapse: collapse;
+}
+.matrix-table tr {
+    border-bottom: 2px solid #ddd;
+    height: 3em;
+}
+.matrix-table tr:hover {
+    background-color: #bae6fa;
+    border-bottom: 2px solid #bae6fa;
+}
+
+.matrix-table td ,th{
+    text-align: start;
+}
+
+.matrix-table .availablity-marker.green {
+    height: 1em;
+    width: 1em;
+    background: rgb(92, 214, 92);
+    padding-right: 0;
+}
+.matrix-table .availablity-marker.red {
+    height: 1em;
+    width: 1em;
+    background: rgb(243, 82, 82);
+    padding-right: 0;
+}
+.matrix-table .availablity-marker.orange {
+    height: 1em;
+    width: 1em;
+    background: rgb(243, 154, 82);
+    padding-right: 0;
+}

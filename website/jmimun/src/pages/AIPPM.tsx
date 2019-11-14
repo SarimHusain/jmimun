@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './styles/committees.css'
+import './styles/committee.css'
 import { Button } from '../components/Button'
 
 export default class AIPPM extends Component {

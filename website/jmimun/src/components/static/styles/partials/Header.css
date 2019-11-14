@@ -3,7 +3,6 @@ body {
 }
 
 header {
-  z-index: 50;
   padding-bottom: 4em;
 }
 
@@ -15,6 +14,7 @@ header .header-container {
   background-color: #000;
   border-bottom: #9b9999 solid 1px;
   transition: all 0.75s ease;
+  z-index: 10000;
 }
 
 header .header-container.hidden {

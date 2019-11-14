@@ -1,0 +1,9 @@
+.card-container{
+    border: 2px solid #007fb9;
+    width: 24em;
+    height: 20em;
+    max-width: 40%;
+    padding : 1em;
+    margin: 1em;
+    vertical-align: bottom;
+}
