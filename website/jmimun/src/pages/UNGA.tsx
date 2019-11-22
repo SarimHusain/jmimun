@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import './styles/committee.css'
 import { Button } from '../components/Button'
+import AppContext from '../AppContext'
+
 
 export default class UNGA extends Component {
+    static contextType = AppContext
+    context!: React.ContextType<typeof AppContext>
     state = {
         matrix: [
             { "name": "Qatar", "status": "Booked" },
@@ -14,6 +18,12 @@ export default class UNGA extends Component {
 
     fetchMatrix() {
 
+    }
+    routeToRegister(){
+        console.log(this.context)
+        // this.context.actions.router('/register')
+        this.context.actions.appState({committee:"unga"})
+        console.log(this.context)
     }
     render() {
         return (
@@ -31,7 +41,7 @@ export default class UNGA extends Component {
                             Its powers are to oversee the budget of the UN, appoint the non-permanent members to the Security Council,
                             receive reports from other parts of the UN and make recommendations in the form of General Assembly Resolutions. It has also established numerous subsidiary organs.
                         </p>
-                        <Button color="primary" size="medium" onClick={() => { }}>
+                        <Button color="primary" size="medium" onClick={() => {this.routeToRegister()}}>
                             Register
                         </Button>
                     </div>

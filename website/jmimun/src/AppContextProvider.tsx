@@ -7,13 +7,13 @@ export default class AppContextProvider extends Component {
         ongoingAppTransition: false,
         userAuthenticated: true,
         users: {
-            committee: String(),
             personal: [{
                 name: String(),
                 email: String(),
                 phone: String(),
             }]
-        }
+        },
+        committee: String(),
     }
     appState = (setter: {} | ((prevState: Readonly<{}>, props: Readonly<{}>) => {} | Pick<{}, never> | null) | Pick<{}, never> | null,
         callback?: (() => void) | undefined) => {

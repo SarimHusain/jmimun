@@ -1,19 +1,83 @@
 import React, { Component } from 'react'
+import './styles/Home.css'
 
 
-export default class Home extends Component{
-    render(){
+export default class Home extends Component {
+    render() {
         return (
-            <div>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque. Nunc sed augue lacus viverra vitae congue eu. Nunc scelerisque viverra mauris in. Ipsum nunc aliquet bibendum enim. Vitae semper quis lectus nulla at. Amet purus gravida quis blandit turpis. Dolor purus non enim praesent elementum facilisis leo vel. Libero enim sed faucibus turpis in. Accumsan tortor posuere ac ut consequat semper. Purus sit amet luctus venenatis lectus. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet. Hendrerit dolor magna eget est lorem ipsum.
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-In fermentum et sollicitudin ac orci phasellus egestas tellus. Luctus venenatis lectus magna fringilla. Consectetur lorem donec massa sapien faucibus et molestie ac. Et egestas quis ipsum suspendisse. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam. Nibh tellus molestie nunc non blandit massa. Habitant morbi tristique senectus et. Ac tortor dignissim convallis aenean et tortor at. Erat pellentesque adipiscing commodo elit at. Massa placerat duis ultricies lacus sed. Ut placerat orci nulla pellentesque dignissim enim sit amet venenatis. At risus viverra adipiscing at in tellus integer feugiat scelerisque. Et netus et malesuada fames ac turpis egestas.
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-Id neque aliquam vestibulum morbi. Quam viverra orci sagittis eu volutpat odio facilisis mauris. Velit scelerisque in dictum non. Iaculis nunc sed augue lacus viverra vitae congue eu. Urna cursus eget nunc scelerisque viverra mauris in aliquam sem. Proin nibh nisl condimentum id. Sapien faucibus et molestie ac. Cursus in hac habitasse platea dictumst quisque. Dolor sit amet consectetur adipiscing elit ut. Semper risus in hendrerit gravida rutrum quisque non tellus. Erat pellentesque adipiscing commodo elit. Id cursus metus aliquam eleifend mi. Mattis rhoncus urna neque viverra.
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-Justo donec enim diam vulputate ut pharetra. Nisl vel pretium lectus quam id leo in vitae turpis. Aliquam etiam erat velit scelerisque in. Sed blandit libero volutpat sed cras. Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar. Augue neque gravida in fermentum et sollicitudin ac. Diam maecenas sed enim ut sem viverra aliquet eget. Diam donec adipiscing tristique risus. Nullam ac tortor vitae purus faucibus ornare. Fermentum et sollicitudin ac orci phasellus egestas tellus rutrum tellus. Bibendum at varius vel pharetra vel. Felis imperdiet proin fermentum leo vel orci porta non. Sagittis id consectetur purus ut faucibus pulvinar elementum integer enim. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Mollis nunc sed id semper risus in hendrerit. Tempor commodo ullamcorper a lacus vestibulum sed arcu. Aliquet eget sit amet tellus cras adipiscing enim. Amet luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor.
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-Nisl nisi scelerisque eu ultrices vitae auctor. In egestas erat imperdiet sed. Elementum eu facilisis sed odio. Eget nullam non nisi est sit. Sit amet mattis vulputate enim nulla aliquet porttitor. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit lectus. Netus et malesuada fames ac turpis egestas integer eget. Diam vel quam elementum pulvinar. Volutpat odio facilisis mauris sit amet. Libero enim sed faucibus turpis in. Ut porttitor leo a diam sollicitudin tempor id. Et molestie ac feugiat sed lectus. Lectus arcu bibendum at varius.
+            <div className="home">
+                <div className="container">
+                    <div className="home-content">
+                        <div className="jmilogo">
+                            <img src="/img/home/jmilogo-black.png" />
+                        </div>
+                        <div className="jmimun">
+                            <img src="/img/home/jmimun-home.png" />
+                        </div>
+                    </div>
+                    <div className="date">
+                        <p className="date-text">
+                            5<sup>th</sup> and 6<sup>th</sup>Februrary
+                        </p>
+                    </div>
+                </div>
+                <div className="container">
+                    <div className="messages">
+                        <div className="message blue">
+                            <div className="img-container">
+                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                            </div>
+                            <div className="message-text">
+                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
+                                {/* Make message-head flash onShow*/}
+                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
+                                I welcome all delegates from India and abroad, and also the International Press.
+                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
+                                I hope they are able to raise the bar.
+                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
+                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
+                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
+                                And my best wishes goes with the team of JMI MUN.
+                                </p>
+                            </div>
+
+                        </div>
+                        <div className="message white">
+                            <div className="message-text">
+                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
+                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
+                                I welcome all delegates from India and abroad, and also the International Press.
+                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
+                                I hope they are able to raise the bar.
+                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
+                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
+                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
+                                And my best wishes goes with the team of JMI MUN.
+                                </p>
+                            </div>
+                            <div className="img-container">
+                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                            </div>
+                        </div>
+                        <div className="message black">
+                            <div className="img-container">
+                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                            </div>
+                            <div className="message-text">
+                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
+                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
+                                I welcome all delegates from India and abroad, and also the International Press.
+                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
+                                I hope they are able to raise the bar.
+                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
+                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
+                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
+                                And my best wishes goes with the team of JMI MUN.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

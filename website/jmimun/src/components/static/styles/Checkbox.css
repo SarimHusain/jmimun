@@ -4,7 +4,6 @@
     width: 100%;
     flex-flow:column;
     max-width: 24em;
-    margin: auto;
 }
 
 .checkbox-label {

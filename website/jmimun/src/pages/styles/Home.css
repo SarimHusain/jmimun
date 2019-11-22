@@ -1,0 +1,111 @@
+.date {
+    display:flex;
+    margin-left: auto;
+    margin-top: 1em;
+    color: #007fb9;
+    font-weight: bolder;
+    font-size: 4em;
+    font-style: italic;
+    opacity: 0.6;
+    font-family: 'Varela Round';
+}
+.date-text {
+    text-orientation: sideways;
+    writing-mode: vertical-rl;
+    padding-right: 0.5em;
+    white-space: nowrap;
+
+}
+
+.messages {
+    text-align: center;
+    margin-top:2em;
+    width: 100%;
+    color: black;
+}
+
+.message {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: auto;
+    align-self: center;
+    padding-right: 15%;
+    padding-left: 15%;
+    font-size: 1.2em;
+    justify-content: center;
+    align-items: center;
+}
+
+.message.blue{
+    background-color: #007fb9;
+}
+
+.message.blue .message-text {
+    color: #000;
+}
+
+.message.blue .message-head {
+    color: #fff;
+}
+
+.message.white{
+    background-color: #fff;
+}
+
+.message.white .message-text {
+    color: black;
+}
+
+.message.white .message-head {
+    color: #007fb9;
+}
+
+.message.black{
+    background-color: #000;
+}
+
+.message.black .message-text {
+    color: #007fb9;
+}
+
+.message.black .message-head {
+    color: #fff;
+}
+
+.message-img {
+    border-radius: 10em;
+}
+.img-container{
+    width: 50%;
+    height: 100%;
+}
+.message-head{
+    color: white;
+    margin: 1em;
+    margin-left: auto;
+    text-transform: uppercase;
+}
+.message-text {
+    padding: 15px;
+    width: 50%;
+}
+.home .container {
+    max-width: 100vw;
+}
+.home-content {
+    max-width: 100vw;
+    margin-top: 5%;
+    margin-left: 8%;
+    /* Such bad hardcode that even I feel bad */
+    width: 100vw;
+}
+
+.home-content .jmilogo img{
+    width: 10%;
+    height: 10%;
+}
+.home-content .jmimun img{
+    width: 30%;
+    height: 30%;
+}

@@ -8,24 +8,36 @@ import './styles/Register.css'
 interface RegisterProps {
     committee: string
 }
-
+// Committeeeeeee
 export default class Register extends Component {
     state = {
-        fields: [
-            { "name": "name", "type": "text", "required": true, "placeholder": "Name" },
-            { "name": "experience", "type": "textarea", "placeholder": "Experience", "required": true },
-            { "name": "age", "type": "number", "placeholder": "Age", "required": true },
-            { "name": "Choice", "type": "radio", "options": ["op1", "op2", "op3", "op4"] },
-            { "name": "SelectAll", "type": "check", "required": true, "options": ["op1", "op2", "op3", "op4"] }
-        ],
+        required: ['category', 'name', 'instType', 'age', 'email', 'phone', 'accomodation', 'pref1', 'pref2'],
         data: {
-            "name": "",
+            "category": "",
+            "email": "",
+            "accomodation": "",
+            "pref1": "",
+            "pref2": "",
+            "pref3": "",
             "experience": "",
             "age": 0,
-            "Choice": "",
-            "SelectAll": []
+            "instType": "",
+            "instType_other": "",
+            "munxp": "",
+            "passport": "",
+            "payment": "",
+            "requiredFulfilled": false,
+            "user": [{
+                "name": "",
+                "phone": "",
+                "email": ""
+            }, {
+                "name": "",
+                "phone": "",
+                "email": ""
+            }]
         },
-        section: 1
+        "committeeSize": 2
     }
 
     regInputHandler(event: any, state: any) {
@@ -41,45 +53,60 @@ export default class Register extends Component {
         else if (event.target.type === 'radio') {
             _data[event.target.name] = event.target.value
         }
-        else if (event.target.type === 'text' || event.target.type === 'textarea') {
+        else if (event.target.type === 'text' || event.target.type === 'textarea' || event.target.type === 'email') {
+            if (event.target.name.includes('/')) {
+                let parentKey = event.target.name.split('/')[0]
+                let index = parseInt(event.target.name.split('/')[1].split('#')[0], 10)
+                let childKey = event.target.name.split('#')[1]
+                _data[parentKey][index-1][childKey] = event.target.value
+            } else 
             _data[event.target.name] = event.target.value
         }
         var truth: boolean = true
-        for (let i = 0; i < state.fields.length; i++) {
-            if (state.fields[i].required) {
-                if (_data[state.fields[i].name].length === 0) {
-                    truth = false
-                    break
-                }
+        for (let i = 0; i < state.required.length; i++) {
+            if (state.data[state.required[i]] === '') {
+                truth = false
+                break
             }
         }
         _data['requiredFulfilled'] = truth
         this.setState({ data: _data })
     }
 
-    fetchFields() {
-        //Fetch fields from server, set state and set data to be the empty json of keys 
-    }
-
     componentDidMount() {
-        this.fetchFields()
-    }
 
+    }
+    validate() {
+        if (this.state.data.payment === " No") {
+            this.setState({ "error": "Please agree to the payment terms" })
+        }
+        else if (!this.state.data.requiredFulfilled) {
+            this.setState({ "error": "Please fill in all the fields" })
+        }
+        else {
+            //send to the server
+        }
+    }
     render() {
         return (
             <div className="register">
-                {this.state.section === 1 ? (
+                <div className="container">
+                    <div className="title">
+                        <h1>Register</h1>
+                    </div>
+                </div>
+                <div className="container">
                     <section>
                         <p>
                             Please answer all questions honestly and to the full extent of your knowledge.
                             The Secretariat reserves the right to cancel your selection if any of your answers
                             are found to be deliberately false. <br /><br />
-                            <h3>Instructions</h3>
+                            <h2 className="blue">Instructions</h2>
                             Consider following definitions while filling the 'Category' column in the form <br /><br />
                             Domestic : Those participants who are residing and pursuing their education in India. <br />
                             NRI : Indian Citizens pursuing their educations in India. <br />
                             Foreign National : All delegates who do not hold Indian citizenship. <br /><br />
-                            <h3>Registration Fee Details</h3>
+                            <h2 className="blue">Registration Fee Details</h2>
                             Domestic : Rs. 1200 INR per delegate<br />
                             NRI and Foreign National : $85 USD per delegate <br /><br />
                             Processes Involved <br />
@@ -92,92 +119,197 @@ export default class Register extends Component {
             their respective seats get booked and the respective committee and position gets confirmed.</li>
                             </ol>
                         </p>
-                        <Radio 
-                            name="Category" 
-                            options={['Domestic', 'NRI', 'Foreign National']} 
-                            onChange={(event:any)=>{this.regInputHandler(event, this.state)}}
+                        <h3>Category</h3>
+                        <Radio
+                            name="category"
+                            options={['Domestic', 'NRI', 'Foreign National']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                         />
-                        <Button 
-                            color="primary" 
-                            onClick={()=>{this.setState({section:2})}}
+                        <br />
+                        <h2 className="blue">About You</h2>
+                        <h3>Personal Details</h3>
+                        {this.state.committeeSize ===2 ? (<p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 1</p>):(<div></div>)}
+                        <Textbox
+                            name="user/1#name"
+                            placeholder="Name"
+                            type="text"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/1#age"
+                            type="number"
+                            placeholder="Age"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value != '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/1#email"
+                            type="email"
+                            placeholder="Email"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/1#phone"
+                            type="phone"
+                            placeholder="Phone"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/1#institution"
+                            placeholder="Institution"
+                            type="text"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <p style={{ "fontSize": "1.3em" }}>Type of Institution</p>
+                        <Radio
+                            name="user/1#instType"
+                            options={['School', 'College', 'University', 'Other']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        {this.state.data.instType === 'Other' ?
+                            (<Textbox
+                                name="user/1#instType_other"
+                                type="text"
+                                placeholder="Please specify"
+                                onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            />) : (<div></div>)}
+                        <p style={{ "fontSize": "1.3em" }}>Do you require accomodation?</p>
+                        <Radio
+                            name="user/1#accomodation"
+                            options={['Yes', 'No']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        {this.state.data.category !== 'Domestic' ? (<Textbox
+                            name="passport"
+                            type="text"
+                            placeholder="Passport"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        ) : (<div></div>)}
+                        {this.state.committeeSize ===2 ? (
+                            <div>
+                                <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 2</p>
+                                <Textbox
+                            name="user/2#name"
+                            placeholder="Name"
+                            type="text"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/2#age"
+                            type="number"
+                            placeholder="Age"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value != '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/2#email"
+                            type="email"
+                            placeholder="Email"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/2#phone"
+                            type="phone"
+                            placeholder="Phone"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="user/2#institution"
+                            placeholder="Institution"
+                            type="text"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <p style={{ "fontSize": "1.3em" }}>Type of Institution</p>
+                        <Radio
+                            name="user/2#instType"
+                            options={['School', 'College', 'University', 'Other']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        {this.state.data.instType === 'Other' ?
+                            (<Textbox
+                                name="user/2#instType_other"
+                                type="text"
+                                placeholder="Please specify"
+                                onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            />) : (<div></div>)}
+                        <p style={{ "fontSize": "1.3em" }}>Do you require accomodation?</p>
+                        <Radio
+                            name="user/1#accomodation"
+                            options={['Yes', 'No']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        {this.state.data.category !== 'Domestic' ? (<Textbox
+                            name="passport"
+                            type="text"
+                            placeholder="Passport"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />):(<div></div>)}
+                            </div>
+                            ):(
+                                <div></div>
+                            )}
+                        <h2 className="blue">Preferences</h2>
+                        <Textarea
+                            name="munxp"
+                            placeholder="Your MUN Experience"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <p>This will help us allot you a portfolio appropriate to your experience. Please enter the number of MUNs you have been a part of.</p>
+                        <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Please enter your preferences</p>
+                        <Textbox
+                            name="pref1"
+                            placeholder="Preference 1"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="pref2"
+                            placeholder="Preference 2"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
+                            validationErrorHelptext="This field is required"
+                        />
+                        <Textbox
+                            name="pref3"
+                            placeholder="Preference 3"
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                        />
+                        <h2 className="blue">Payment</h2>
+                        <p>
+                            There is a basic registration of Rs. 1200 INR per delegate(For Domestic Delegates) and $ 85 USD per delegate(For NRI and Foreign national categories).<br />
+                            You will be required to check your allotment on the website, jmimun.org. You will also be sent an email containing this information. <br />
+                            You are expected to complete the payment after your allotment. Your alloted position will be re-alloted to other delegates, in case you fail to make the payment.<br />
+                        </p>
+                        <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Do you agree to the terms of payment?</p>
+                        <Radio
+                            name="payment"
+                            options={['Yes', 'No']}
+                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                         />
                     </section>
-                ) : (
-                this.state.section === 2? (
-                    <section>
-                        <h3>About You</h3>
-                        <h4>Personal Details</h4>
-                        
-                    </section>
-                ) : (
-                this.state.section === 3 ? (<div></div>) : (
-                                    <div></div>
-                                )
-                            )
-                    )
-                }
-                <div className="container">
-                    <div className="title">
-                        <h1>Register</h1>
-                    </div>
                 </div>
-                {this.state.fields.map(field => {
-                    switch (field.type) {
-                        case 'text': return (
-                            <div>
-                                <h3>{field.name}</h3>
-                                <Textbox
-                                    name={field.name}
-                                    type="text"
-                                    placeholder={field.placeholder}
-                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                />
-                            </div>
-                        )
-                        case 'textarea': return (
-                            <div>
-                                <h3>{field.name}</h3>
-                                <Textarea
-                                    name={field.name}
-                                    placeholder={field.placeholder}
-                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                />
-                            </div>
-                        )
-                        case 'radio': return (
-                            <div>
-                                <h3>{field.name}</h3>
-                                <Radio
-                                    options={field.options != null ? field.options : []}
-                                    name={field.name}
-                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                />
-                            </div>
-                        )
-                        case 'check': return (
-                            <div>
-                                <h3>{field.name}</h3>
-                                <Checkbox
-                                    options={field.options != null ? field.options : []}
-                                    name={field.name}
-                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                />
-                            </div>
-                        )
-                        case 'number': return (
-                            <div>
-                                <h3>{field.name}</h3>
-                                <Textbox
-                                    name={field.name}
-                                    type="number"
-                                    placeholder={field.placeholder}
-                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                />
-                            </div>
-                        )
-                    }
-                    return (<div></div>)
-                })}
                 <Button color="primary" onClick={() => { }}>
                     Submit
                 </Button>
