@@ -2,23 +2,28 @@ import React, { Component } from 'react'
 import './styles/committee.css'
 import { Button } from '../components/Button'
 import AppContext from '../AppContext'
+import { APIService } from '../libs/api'
 
 
 export default class UNGA extends Component {
+    state= {
+        matrix: []
+    }
+    
+    componentDidMount(){
+        this.fetchMatrix();
+    }
+
+    fetchMatrix(){
+        var API = new APIService()
+        API.fetchMatrix('unga').then((data)=>{
+            this.setState({matrix: data})
+        })
+    }
+
     static contextType = AppContext
     context!: React.ContextType<typeof AppContext>
-    state = {
-        matrix: [
-            { "name": "Qatar", "status": "Booked" },
-            { "name": "Jordan", "status": "Booked" },
-            { "name": "Kazakhstan", "status": "Alloted" },
-            { "name": "Mozambique", "status": "Available" }
-        ]
-    }
-
-    fetchMatrix() {
-
-    }
+    
     routeToRegister(){
         console.log(this.context)
         // this.context.actions.router('/register')
@@ -59,7 +64,7 @@ export default class UNGA extends Component {
                                 <th className="availablity">Availablity</th>
                                 <th className="availablity-marker"></th>
                             </tr>
-                            {this.state.matrix.map(portfolio => {
+                            {this.state.matrix.map((portfolio:any) => {
                                 return (
                                     <tr>
                                         <td className="name"><h4>{portfolio.name}</h4></td>

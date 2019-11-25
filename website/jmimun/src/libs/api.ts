@@ -43,5 +43,17 @@ export class APIService {
       }
     )
   }
+
+  async fetchMatrix(committee:string){
+    return this.request.get(
+      this.endpoint + `/matrix/${committee}`
+    )
+  }
+
+  async portfolioAvailablity(committee:string, portfolio:string){
+    return this.request.get(
+      this.endpoint + `/matrix/${committee}/${portfolio}`
+    )
+  }
 }
   

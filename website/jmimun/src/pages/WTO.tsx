@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
 import './styles/committee.css'
 import { Button } from '../components/Button'
+import { APIService } from '../libs/api';
 
 export default class WTO extends Component {
+    state= {
+        matrix: []
+    }
+    
+    componentDidMount(){
+        this.fetchMatrix();
+    }
+
+    fetchMatrix(){
+        var API = new APIService()
+        API.fetchMatrix('ww3').then((data)=>{
+            this.setState({matrix: data})
+        })
+    }
     render() {
         return (
             <div className="committee">

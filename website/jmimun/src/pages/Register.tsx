@@ -4,6 +4,8 @@ import Button from '../components/Button'
 import Radio from '../components/Radio'
 import { Textbox, Textarea } from '../components/Textbox'
 import './styles/Register.css'
+import { APIService } from '../libs/api'
+import Select from '../components/Select'
 
 interface RegisterProps {
     committee: string
@@ -37,7 +39,15 @@ export default class Register extends Component {
                 "email": ""
             }]
         },
-        "committeeSize": 2
+        "committeeSize": 2,
+        "matrix": []
+    }
+
+    fetchMatrix() {
+        var API = new APIService()
+        API.fetchMatrix('aippm').then((data) => {
+            this.setState({ matrix: data })
+        })
     }
 
     regInputHandler(event: any, state: any) {
@@ -53,14 +63,14 @@ export default class Register extends Component {
         else if (event.target.type === 'radio') {
             _data[event.target.name] = event.target.value
         }
-        else if (event.target.type === 'text' || event.target.type === 'textarea' || event.target.type === 'email') {
+        else if (event.target.type === 'text' || event.target.type === 'textarea' || event.target.type === 'email' || event.target.value=='select') {
             if (event.target.name.includes('/')) {
                 let parentKey = event.target.name.split('/')[0]
                 let index = parseInt(event.target.name.split('/')[1].split('#')[0], 10)
                 let childKey = event.target.name.split('#')[1]
-                _data[parentKey][index-1][childKey] = event.target.value
-            } else 
-            _data[event.target.name] = event.target.value
+                _data[parentKey][index - 1][childKey] = event.target.value
+            } else
+                _data[event.target.name] = event.target.value
         }
         var truth: boolean = true
         for (let i = 0; i < state.required.length; i++) {
@@ -128,7 +138,7 @@ export default class Register extends Component {
                         <br />
                         <h2 className="blue">About You</h2>
                         <h3>Personal Details</h3>
-                        {this.state.committeeSize ===2 ? (<p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 1</p>):(<div></div>)}
+                        {this.state.committeeSize === 2 ? (<p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 1</p>) : (<div></div>)}
                         <Textbox
                             name="user/1#name"
                             placeholder="Name"
@@ -195,76 +205,76 @@ export default class Register extends Component {
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                         />
                         ) : (<div></div>)}
-                        {this.state.committeeSize ===2 ? (
+                        {this.state.committeeSize === 2 ? (
                             <div>
                                 <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 2</p>
                                 <Textbox
-                            name="user/2#name"
-                            placeholder="Name"
-                            type="text"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
-                        />
-                        <Textbox
-                            name="user/2#age"
-                            type="number"
-                            placeholder="Age"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value != '') return true }}
-                            validationErrorHelptext="This field is required"
-                        />
-                        <Textbox
-                            name="user/2#email"
-                            type="email"
-                            placeholder="Email"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
-                        />
-                        <Textbox
-                            name="user/2#phone"
-                            type="phone"
-                            placeholder="Phone"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
-                        />
-                        <Textbox
-                            name="user/2#institution"
-                            placeholder="Institution"
-                            type="text"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
-                        />
-                        <p style={{ "fontSize": "1.3em" }}>Type of Institution</p>
-                        <Radio
-                            name="user/2#instType"
-                            options={['School', 'College', 'University', 'Other']}
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                        />
-                        {this.state.data.instType === 'Other' ?
-                            (<Textbox
-                                name="user/2#instType_other"
-                                type="text"
-                                placeholder="Please specify"
-                                onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            />) : (<div></div>)}
-                        <p style={{ "fontSize": "1.3em" }}>Do you require accomodation?</p>
-                        <Radio
-                            name="user/1#accomodation"
-                            options={['Yes', 'No']}
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                        />
-                        {this.state.data.category !== 'Domestic' ? (<Textbox
-                            name="passport"
-                            type="text"
-                            placeholder="Passport"
-                            onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                        />):(<div></div>)}
+                                    name="user/2#name"
+                                    placeholder="Name"
+                                    type="text"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    validation={(event: any) => { if (event.target.value !== '') return true }}
+                                    validationErrorHelptext="This field is required"
+                                />
+                                <Textbox
+                                    name="user/2#age"
+                                    type="number"
+                                    placeholder="Age"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    validation={(event: any) => { if (event.target.value != '') return true }}
+                                    validationErrorHelptext="This field is required"
+                                />
+                                <Textbox
+                                    name="user/2#email"
+                                    type="email"
+                                    placeholder="Email"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    validation={(event: any) => { if (event.target.value !== '') return true }}
+                                    validationErrorHelptext="This field is required"
+                                />
+                                <Textbox
+                                    name="user/2#phone"
+                                    type="phone"
+                                    placeholder="Phone"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    validation={(event: any) => { if (event.target.value !== '') return true }}
+                                    validationErrorHelptext="This field is required"
+                                />
+                                <Textbox
+                                    name="user/2#institution"
+                                    placeholder="Institution"
+                                    type="text"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    validation={(event: any) => { if (event.target.value !== '') return true }}
+                                    validationErrorHelptext="This field is required"
+                                />
+                                <p style={{ "fontSize": "1.3em" }}>Type of Institution</p>
+                                <Radio
+                                    name="user/2#instType"
+                                    options={['School', 'College', 'University', 'Other']}
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                />
+                                {this.state.data.instType === 'Other' ?
+                                    (<Textbox
+                                        name="user/2#instType_other"
+                                        type="text"
+                                        placeholder="Please specify"
+                                        onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                    />) : (<div></div>)}
+                                <p style={{ "fontSize": "1.3em" }}>Do you require accomodation?</p>
+                                <Radio
+                                    name="user/1#accomodation"
+                                    options={['Yes', 'No']}
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                />
+                                {this.state.data.category !== 'Domestic' ? (<Textbox
+                                    name="passport"
+                                    type="text"
+                                    placeholder="Passport"
+                                    onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                                />) : (<div></div>)}
                             </div>
-                            ):(
+                        ) : (
                                 <div></div>
                             )}
                         <h2 className="blue">Preferences</h2>
@@ -277,24 +287,20 @@ export default class Register extends Component {
                         />
                         <p>This will help us allot you a portfolio appropriate to your experience. Please enter the number of MUNs you have been a part of.</p>
                         <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Please enter your preferences</p>
-                        <Textbox
+                        <Select
                             name="pref1"
-                            placeholder="Preference 1"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
+                            options={this.state.matrix}
                         />
-                        <Textbox
+                        <Select
                             name="pref2"
-                            placeholder="Preference 2"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value !== '') return true }}
-                            validationErrorHelptext="This field is required"
+                            options={this.state.matrix}
                         />
-                        <Textbox
+                        <Select
                             name="pref3"
-                            placeholder="Preference 3"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
+                            options={this.state.matrix}
                         />
                         <h2 className="blue">Payment</h2>
                         <p>

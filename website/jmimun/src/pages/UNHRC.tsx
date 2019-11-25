@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import './styles/committee.css'
 import { Button } from '../components/Button'
+import { APIService } from '../libs/api';
 
 export default class UNHRC extends Component {
-    state = {
-        matrix: [
-            { "name": "Qatar", "status": "Booked" },
-            { "name": "Jordan", "status": "Booked" },
-            { "name": "Kazakhstan", "status": "Alloted" },
-            { "name": "Mozambique", "status": "Available" }
-        ]
+    state= {
+        matrix: []
+    }
+    
+    componentDidMount(){
+        this.fetchMatrix();
+    }
+
+    fetchMatrix(){
+        var API = new APIService()
+        API.fetchMatrix('unhrc').then((data)=>{
+            this.setState({matrix: data})
+        })
     }
     render() {
         return (
@@ -44,7 +51,7 @@ export default class UNHRC extends Component {
                                 <th className="availablity">Availablity</th>
                                 <th className="availablity-marker"></th>
                             </tr>
-                            {this.state.matrix.map(portfolio => {
+                            {this.state.matrix.map((portfolio:any) => {
                                 return (
                                     <tr>
                                         <td className="name"><h4>{portfolio.name}</h4></td>
