@@ -1,0 +1,12 @@
+Todo - 
+
+Committee in registration, AppContext weird bug fix - 30m
+Revisit env vars - 15m
+Contact endpoint - 5m - done
+Select styling - 15m
+Design changes - 1-2h
+
+Emails and stuff -  fetch from others
+
+
+API - Authentication
