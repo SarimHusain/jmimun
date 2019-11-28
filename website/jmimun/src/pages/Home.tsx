@@ -1,84 +1,50 @@
 import React, { Component } from 'react'
 import './styles/Home.css'
+import AppContext from '../AppContext'
+import Button from '../components/Button'
 
 
 export default class Home extends Component {
     render() {
         return (
-            <div className="home">
-                <div className="container">
-                    <div className="home-content">
-                        <div className="jmilogo">
-                            <img src="/img/home/jmilogo-black.png" alt=""/>
-                        </div>
-                        <div className="jmimun">
-                            <img src="/img/home/jmimun-home.png" alt=""/>
-                        </div>
-                    </div>
-                    <div className="date">
-                        <p className="date-text">
-                            5<sup>th</sup> and 6<sup>th</sup>Februrary
-                        </p>
-                    </div>
+            <article className="home">
+                <div className="container" style={{ "height": "45em", "flexFlow": "column" }}>
+                    <h1>Discern | Discuss | Debate</h1>
+                    <h3>15<sup>th</sup> and 16<sup>th</sup> February</h3>
+                    <div className="padding"></div>
+                    <AppContext.Consumer>
+                        {
+                            appContext => (
+                                <Button color="primary"
+                                    onClick={() => {
+                                        appContext.actions.router('/committees')
+                                    }}>
+                                    Apply
+                  </Button>
+                            )
+                        }
+                    </AppContext.Consumer>
                 </div>
-                <div className="container">
-                    <div className="messages">
-                        <div className="message blue">
-                            <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
-                            </div>
-                            <div className="message-text">
-                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
-                                {/* Make message-head flash onShow*/}
-                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
-                                I welcome all delegates from India and abroad, and also the International Press.
-                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
-                                I hope they are able to raise the bar.
-                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
-                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
-                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
-                                And my best wishes goes with the team of JMI MUN.
-                                </p>
-                            </div>
 
-                        </div>
-                        <div className="message white">
-                            <div className="message-text">
-                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
-                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
-                                I welcome all delegates from India and abroad, and also the International Press.
-                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
-                                I hope they are able to raise the bar.
-                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
-                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
-                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
-                                And my best wishes goes with the team of JMI MUN.
-                                </p>
-                            </div>
-                            <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
-                            </div>
-                        </div>
-                        <div className="message black">
-                            <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
-                            </div>
-                            <div className="message-text">
-                                <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
-                                <p>It gives me immense pleasure to know that Jamia Millia Islamia students are hosting the Model United Nations at Jamia Millia Islamia.
-                                I welcome all delegates from India and abroad, and also the International Press.
-                                Through this international conference, the organizing committee has come up with the slogan "Discuss Discern Debate" and continuing the effort.
-                                I hope they are able to raise the bar.
-                                I understand and appreciate Center for Innovation and Entrepreneurship (CIE) for their deep efforts in organizing JMI MUN.
-                                I hope that this MUN helps to spread the message of peace, brotherhood and equality among all the participants, and through them at world stage.
-                                And also it will help Jamia Millia Islamia to portray an infinite and diverse environment image of the university at the world level in front of eminent delegates who are coming to Jamia Millia Islamia for attending the international Model United Nation conference.
-                                And my best wishes goes with the team of JMI MUN.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="container white" style={{ "height": "35em" }}>
+                    <section className="logo">
+                        <img src="/img/home/jmilogo-black.png" width="50%" alt="" />
+                    </section>
+                    <section className="content">
+                        <h2 className="blue">JMI Model United Nations</h2>
+                        <p>
+                            Welcome to the third edition of
+                            Jamia Millia Islamia's Model United Nations Conference
+                            to be held on 15th and 16th February, 2020.
+                            <br/><br/>
+                            True to the spirit of the United Nations organization, 
+                            The JMIMUN conference, strives to foster a forum for constructive open dialogue on complex global issues, 
+                            including international peace, security, economic and social progress. 
+            </p>
+                    </section>
                 </div>
-            </div>
+
+            </article>
         )
     }
 }

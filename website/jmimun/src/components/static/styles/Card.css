@@ -1,9 +1,20 @@
 .card-container{
     border: 2px solid #007fb9;
+    border-radius: 20px;
+    background-color: #fff;
+    display: table-cell;
     width: 24em;
     height: 20em;
     max-width: 40%;
     padding : 1em;
     margin: 1em;
     vertical-align: bottom;
+    transition: 0.3s ease;
+}
+.card-container:hover{
+    transform : scale(1.05);
+} 
+.card-content{
+    height: 100%;
+    width: 100%;
 }

@@ -1,93 +1,94 @@
 import React, { Component } from 'react'
 import { Card } from '../components/Card'
 import { Button } from '../components/Button'
-import './styles/committees.css'
+import './styles/Committees.css'
+import { Link } from 'react-router-dom'
 export class Committees extends Component {
 
     render() {
         return (
-            <div className="committees">
+            <article className="committees">
                 <div className="container">
                     <div className="title">
                         <h1>Committees</h1>
                     </div>
                 </div>
                 <div className="container">
-                    <Card>
-                        <h3>UNGA</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>UNSC</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>UNHRC</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>WTO</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>AU</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>ECOSOC</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>WW3</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
-                    <Card>
-                        <h3>AIPPM</h3>
-                        <Button color="secondary" size="medium" onClick={() => { }}>
-                            View Matrix
-                        </Button>
-                        <Button color="primary" size="medium" onClick={() => { }}>
-                            Register
-                        </Button>
-                    </Card>
+                    <Link to={"/committee/unga"}>
+                        <Card>
+                            <h3 className="blue">UNGA</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/unsc'}>
+                        <Card>
+                            <h3 className="blue">UNSC</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/unhrc'}>
+                        <Card>
+                            <h3 className="blue">UNHRC</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/wto'}>
+                        <Card>
+                            <h3 className="blue">WTO</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/au'}>
+                        <Card>
+                            <h3 className="blue">AU</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/ecosoc'}>
+                        <Card>
+                            <h3 className="blue">ECOSOC</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/ww3'}>
+                        <Card>
+                            <h3 className="blue">WW3</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
+                    <Link to={'/committee/aippm'}>
+                        <Card>
+                            <h3 className="blue">AIPPM</h3>
+                            <p className="info">One line information here</p>
+                            <div className="action" style={{ "color": "#00b6f1" }}>
+                                Click to view more
+                        </div>
+                        </Card>
+                    </Link>
 
                 </div>
-            </div>
+            </article>
         )
     }
 }

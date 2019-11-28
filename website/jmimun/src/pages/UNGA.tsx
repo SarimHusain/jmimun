@@ -30,7 +30,7 @@ export default class UNGA extends Component {
     }
     render() {
         return (
-            <div className="committee">
+            <article className="committee">
                 <div className="container">
                     <div className="title">
                         <h1>UNGA</h1>
@@ -76,7 +76,7 @@ export default class UNGA extends Component {
                         </table>
                     </div>
                 </div>
-            </div >
+            </article >
         )
     }
 }

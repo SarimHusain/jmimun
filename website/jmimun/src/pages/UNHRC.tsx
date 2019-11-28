@@ -23,12 +23,12 @@ export default class UNHRC extends Component {
     context!: React.ContextType<typeof AppContext>
     
     routeToRegister(){
-        this.context.actions.appState({committee:"unga"})
+        this.context.actions.appState({committee:"unhrc"})
         this.context.actions.router('/register')
     }
     render() {
         return (
-            <div className="committee">
+            <article className="committee">
                 <div className="container">
                     <div className="title">
                         <h1>UNHRC</h1>
@@ -73,7 +73,7 @@ export default class UNHRC extends Component {
                         </table>
                     </div>
                 </div>
-            </div>
+            </article>
         )
     }
 }

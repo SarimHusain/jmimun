@@ -6,35 +6,19 @@ export default class Header extends Component {
     state = {
         sidebar: {
             isOpen: false
-        },
-        navbar: {
-            scrollPos: window.pageYOffset,
-            atTop: true,
-            isVisible: true
         }
     }
 
-    componentDidMount() {
-        window.onscroll = this.handleScroll
-    }
-
     toggleSidebar = () => {
-        this.setState(() => {
-            let { sidebar } = this.state
-            sidebar.isOpen = !sidebar.isOpen
-            return {
-                sidebar
-            }
+        this.setState(()=>{
+          let { sidebar } = this.state
+          sidebar.isOpen = !sidebar.isOpen
+          return {
+            sidebar
+          }
         })
-    }
-
-    handleScroll = () => {
-        let { navbar } = this.state;
-        navbar.isVisible = navbar.scrollPos > window.pageYOffset
-        navbar.scrollPos = window.pageYOffset
-        navbar.atTop = !navbar.scrollPos
-        this.setState(navbar)
-    }
+      }
+ 
 
     render() {
         return (
@@ -50,10 +34,8 @@ export default class Header extends Component {
               <div className="sidebar">
                 <nav className="sidebar-nav">
                   <Link onClick={this.toggleSidebar} to={'/'}>About</Link>
-                  <Link onClick={this.toggleSidebar} to={'/speakers'}>Speakers</Link>
-                  <Link onClick={this.toggleSidebar} to={'/team'}>Team</Link>
+                  <Link onClick={this.toggleSidebar} to={'/committees'}>Committees</Link>
                   <Link onClick={this.toggleSidebar} to={'/contact'}>Contact</Link>
-                  <Link onClick={this.toggleSidebar} to={'/register'}>Register</Link>
                 </nav>
               </div>
 
@@ -61,10 +43,8 @@ export default class Header extends Component {
               
               <nav className="desktop-nav">
                 <Link to={'/'}>About</Link>
-                <Link to={'/speakers'}>Speakers</Link>
-                <Link to={'/team'}>Team</Link>
+                <Link to={'/committees'}>Committees</Link>
                 <Link to={'/contact'}>Contact</Link>
-                <Link to={'/register'}>Register</Link>
               </nav>
             </div>
           </header>

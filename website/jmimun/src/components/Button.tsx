@@ -15,19 +15,19 @@ interface ButtonProps {
 
 const buttonStyles = {
   primary: {
-    backgroundColor: '#007fb9',
+    backgroundColor: '#fff',
     border: 'none',
-    color: '#fff'
+    color: '#000'
   },
   secondary: {
-    backgroundColor: '#000',
+    backgroundColor: '#00b6f1',
     border: 'none',
-    color: '#fff'
+    color: '#000'
   },
   default: {
-    backgroundColor: '#fff',
-    border: '2px solid #007fb9',
-    color: '#007fb9'
+    backgroundColor: '#000',
+    border: '2px solid #00b6f1',
+    color: '#00b6f1'
   },
 
   solid: {},

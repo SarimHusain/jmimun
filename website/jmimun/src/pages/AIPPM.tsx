@@ -24,12 +24,12 @@ export default class AIPPM extends Component {
     context!: React.ContextType<typeof AppContext>
     
     routeToRegister(){
-        this.context.actions.appState({committee:"unga"})
+        this.context.actions.appState({committee:"aippm"})
         this.context.actions.router('/register')
     }
     render() {
         return (
-            <div className="committee">
+            <article className="committee">
                 <div className="container">
                     <div className="title">
                         <h1>AIPPM</h1>
@@ -46,7 +46,29 @@ export default class AIPPM extends Component {
                         </Button>
                     </div>
                 </div>
-            </div>
+                <div className="container">
+                    <div className="matrix">
+                        <table className="matrix-table">
+                            <tr>
+                                <th className="name">Name</th>
+                                <th className="availablity">Availablity</th>
+                                <th className="availablity-marker"></th>
+                            </tr>
+                            {this.state.matrix.map((portfolio:any) => {
+                                return (
+                                    <tr>
+                                        <td className="name"><h4>{portfolio.name}</h4></td>
+                                        <td className="availablity">{portfolio.status}</td>
+                                        <td><div className={
+                                            portfolio.status === 'Booked' ? "availablity-marker red" : (portfolio.status === "Available" ? "availablity-marker green" : "availablity-marker orange")
+                                        }></div></td>
+                                    </tr>
+                                )
+                            })}
+                        </table>
+                    </div>
+                </div>
+            </article>
         )
     }
 }

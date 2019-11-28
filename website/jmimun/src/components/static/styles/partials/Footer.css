@@ -1,27 +1,9 @@
 footer {
-    background-color: #000;
-    height: 20em;
-    width: 100%;
-    margin-top: 5em;
-    bottom:0;
-    
+    padding: 6em 4em 4em 4em;
+    text-align: center;
+    font-size: 0.75em;
 }
-footer .container {
-    display: flex;
-    padding: 5em;
-    flex-direction: row;
-    align-items: center;
-    margin: auto auto;
-    color: #fff;
-    justify-content: center;
-}
-
-footer .social {
-    align-self: center;
-}
-
-footer .social a{
-    text-decoration: none;
+  
+  footer .social a {
     margin: 1em;
-    color:white;
-}
+  }

@@ -11,18 +11,17 @@
 .committees .container h3 {
     padding-bottom: 1em;
     padding-top: 0.5em;
-}
-.committees .container .card-container{
-    border: 2px solid #007fb9;
-    width: 24em;
-    height: 20em;
-    max-width: 40%;
-    padding : 1em;
-    margin: 1em;
-    vertical-align: bottom;
+    color: #00b6f1;
 }
 .title{
-    padding: 3em;
     padding-bottom: 0;
     border-bottom: 2px solid #007fb9;
+}
+.info{
+    height: 35%;
+    color: #000;
+}
+.committees .container a {
+    padding: 1em;
+    text-decoration: none;
 }
