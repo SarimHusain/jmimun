@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import { AppContext } from './AppContext';
 import { Switch, Route } from 'react-router';
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Header from './components/partials/Header'
 import Footer from './components/partials/Footer'
 import { BrowserRouter } from 'react-router-dom';
-import './components/static/styles/App.css'
 import UNGA from './pages/UNGA';
 import UNSC from './pages/UNSC';
 import UNHRC from './pages/UNHRC';
@@ -22,19 +20,30 @@ import AppContextProvider from './AppContextProvider';
 
 
 export class App extends Component {
-  static contextType = AppContext
-  context!: React.ContextType<typeof AppContext>
 
   render() {
     return (
       <div>
         <BrowserRouter>
           
-            
+            {/* <AppContext.Provider
+              value= {{
+                state: {
+                  committee: ""
+                },
+                actions : {
+                  router: (path:string)=>{
+                    this.context.history.push(path)
+                  },
+                  appState: (committee:string)=>{this.setState({committee:committee})}
+                }
+              }
+
+              } > */}
+              <AppContextProvider>
             <Header />
             
             <Switch>
-              <AppContextProvider>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/register" component={Register} />
@@ -47,12 +56,11 @@ export class App extends Component {
                 <Route exact path="/committee/ecosoc" component={ECOSOC} />
                 <Route exact path="/committee/ww3" component={WW3} />
                 <Route exact path="/committee/aippm" component={AIPPM} />
-              </AppContextProvider>
         
             </Switch>
             
             <Footer />
-          
+            </AppContextProvider>
         </BrowserRouter>
       </div>
     )

@@ -1,0 +1,6 @@
+{
+    "endpoints": {
+        "dev":"localhost:3050",
+        "prod":"api.jmimun.org"
+    }
+}

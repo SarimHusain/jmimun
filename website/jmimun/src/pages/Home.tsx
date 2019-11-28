@@ -9,10 +9,10 @@ export default class Home extends Component {
                 <div className="container">
                     <div className="home-content">
                         <div className="jmilogo">
-                            <img src="/img/home/jmilogo-black.png" />
+                            <img src="/img/home/jmilogo-black.png" alt=""/>
                         </div>
                         <div className="jmimun">
-                            <img src="/img/home/jmimun-home.png" />
+                            <img src="/img/home/jmimun-home.png" alt=""/>
                         </div>
                     </div>
                     <div className="date">
@@ -25,7 +25,7 @@ export default class Home extends Component {
                     <div className="messages">
                         <div className="message blue">
                             <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
                             </div>
                             <div className="message-text">
                                 <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>
@@ -56,12 +56,12 @@ export default class Home extends Component {
                                 </p>
                             </div>
                             <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
                             </div>
                         </div>
                         <div className="message black">
                             <div className="img-container">
-                                <img className="message-img" src="/img/messages/vc.webp"></img>
+                                <img className="message-img" src="/img/messages/vc.webp" alt=""></img>
                             </div>
                             <div className="message-text">
                                 <h2 className="message-head">A Message from the <br />Vice Chancellor</h2>

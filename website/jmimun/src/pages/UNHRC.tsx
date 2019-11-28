@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './styles/committee.css'
 import { Button } from '../components/Button'
 import { APIService } from '../libs/api';
+import AppContext from '../AppContext';
 
 export default class UNHRC extends Component {
     state= {
@@ -17,6 +18,13 @@ export default class UNHRC extends Component {
         API.fetchMatrix('unhrc').then((data)=>{
             this.setState({matrix: data})
         })
+    }
+    static contextType = AppContext
+    context!: React.ContextType<typeof AppContext>
+    
+    routeToRegister(){
+        this.context.actions.appState({committee:"unga"})
+        this.context.actions.router('/register')
     }
     render() {
         return (

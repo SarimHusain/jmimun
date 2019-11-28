@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Checkbox from '../components/Checkbox'
 import Button from '../components/Button'
 import Radio from '../components/Radio'
 import { Textbox, Textarea } from '../components/Textbox'
@@ -7,46 +6,48 @@ import './styles/Register.css'
 import { APIService } from '../libs/api'
 import Select from '../components/Select'
 
-interface RegisterProps {
-    committee: string
-}
-// Committeeeeeee
+
 export default class Register extends Component {
     state = {
         required: ['category', 'name', 'instType', 'age', 'email', 'phone', 'accomodation', 'pref1', 'pref2'],
         data: {
-            "category": "",
-            "email": "",
-            "accomodation": "",
-            "pref1": "",
-            "pref2": "",
-            "pref3": "",
-            "experience": "",
-            "age": 0,
-            "instType": "",
-            "instType_other": "",
-            "munxp": "",
-            "passport": "",
-            "payment": "",
-            "requiredFulfilled": false,
-            "user": [{
-                "name": "",
-                "phone": "",
-                "email": ""
+            category: "",
+            email: "",
+            accomodation: "",
+            pref1: "",
+            pref2: "",
+            pref3: "",
+            experience: "",
+            age: 0,
+            instType: "",
+            instType_other: "",
+            munxp: "",
+            passport: "",
+            payment: "",
+            requiredFulfilled: false,
+            user: [{
+                name: "",
+                phone: "",
+                email: ""
             }, {
-                "name": "",
-                "phone": "",
-                "email": ""
+                name: "",
+                phone: "",
+                email: ""
             }]
         },
-        "committeeSize": 2,
-        "matrix": []
+        committeeSize: 2,
+        matrix: ["Azim","Javed", "Azim", "Javed"],
+        section : 1
     }
 
     fetchMatrix() {
         var API = new APIService()
         API.fetchMatrix('aippm').then((data) => {
-            this.setState({ matrix: data })
+            let _matrix = []
+            for(let portfolio in data){
+                _matrix.push(portfolio)
+            }
+            this.setState({ matrix: _matrix })
         })
     }
 
@@ -63,7 +64,7 @@ export default class Register extends Component {
         else if (event.target.type === 'radio') {
             _data[event.target.name] = event.target.value
         }
-        else if (event.target.type === 'text' || event.target.type === 'textarea' || event.target.type === 'email' || event.target.value=='select') {
+        else if (event.target.type === 'text' || event.target.type === 'textarea' || event.target.type === 'email' || event.target.type ==='select-one') {
             if (event.target.name.includes('/')) {
                 let parentKey = event.target.name.split('/')[0]
                 let index = parseInt(event.target.name.split('/')[1].split('#')[0], 10)
@@ -80,11 +81,16 @@ export default class Register extends Component {
             }
         }
         _data['requiredFulfilled'] = truth
-        this.setState({ data: _data })
+        this.setState({ data: _data }, ()=>{console.log(this.state)})
     }
 
     componentDidMount() {
 
+    }
+    changeSection = () => {
+        if(this.state.section!==4){
+            this.setState({section:this.state.section+1})
+        }
     }
     validate() {
         if (this.state.data.payment === " No") {
@@ -106,17 +112,20 @@ export default class Register extends Component {
                     </div>
                 </div>
                 <div className="container">
-                    <section>
-                        <p>
+                    {
+                    this.state.section === 1 ? 
+                        (
+                        <section>
+                            <p>
                             Please answer all questions honestly and to the full extent of your knowledge.
                             The Secretariat reserves the right to cancel your selection if any of your answers
                             are found to be deliberately false. <br /><br />
-                            <h2 className="blue">Instructions</h2>
+                            <h2>Instructions</h2>
                             Consider following definitions while filling the 'Category' column in the form <br /><br />
                             Domestic : Those participants who are residing and pursuing their education in India. <br />
                             NRI : Indian Citizens pursuing their educations in India. <br />
                             Foreign National : All delegates who do not hold Indian citizenship. <br /><br />
-                            <h2 className="blue">Registration Fee Details</h2>
+                            <h2>Registration Fee Details</h2>
                             Domestic : Rs. 1200 INR per delegate<br />
                             NRI and Foreign National : $85 USD per delegate <br /><br />
                             Processes Involved <br />
@@ -136,7 +145,13 @@ export default class Register extends Component {
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                         />
                         <br />
-                        <h2 className="blue">About You</h2>
+                        <Button color="primary" onClick = {()=>{this.changeSection()}}>Next</Button>
+                        </section>
+                        ):(
+                    this.state.section===2 ? 
+                        (
+                        <section>
+                            <h2>About You</h2>
                         <h3>Personal Details</h3>
                         {this.state.committeeSize === 2 ? (<p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Delegate 1</p>) : (<div></div>)}
                         <Textbox
@@ -152,7 +167,7 @@ export default class Register extends Component {
                             type="number"
                             placeholder="Age"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                            validation={(event: any) => { if (event.target.value != '') return true }}
+                            validation={(event: any) => { if (event.target.value !== '') return true }}
                             validationErrorHelptext="This field is required"
                         />
                         <Textbox
@@ -221,7 +236,7 @@ export default class Register extends Component {
                                     type="number"
                                     placeholder="Age"
                                     onChange={(event: any) => { this.regInputHandler(event, this.state) }}
-                                    validation={(event: any) => { if (event.target.value != '') return true }}
+                                    validation={(event: any) => { if (event.target.value !== '') return true }}
                                     validationErrorHelptext="This field is required"
                                 />
                                 <Textbox
@@ -273,11 +288,17 @@ export default class Register extends Component {
                                     placeholder="Passport"
                                     onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                                 />) : (<div></div>)}
+                                <Button color="primary" onClick = {()=>{this.changeSection()}}>Next</Button>
                             </div>
                         ) : (
                                 <div></div>
                             )}
-                        <h2 className="blue">Preferences</h2>
+                        </section>
+                        ):(
+                        this.state.section===3 ?
+                        (
+                            <section>
+                                <h2 className="blue">Preferences</h2>
                         <Textarea
                             name="munxp"
                             placeholder="Your MUN Experience"
@@ -287,22 +308,29 @@ export default class Register extends Component {
                         />
                         <p>This will help us allot you a portfolio appropriate to your experience. Please enter the number of MUNs you have been a part of.</p>
                         <p style={{ "fontSize": "1.2em", "color": "#007fb9" }}>Please enter your preferences</p>
+                        <p>Preference 1</p>
                         <Select
                             name="pref1"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                             options={this.state.matrix}
                         />
+                        <p>Preference 2</p>
                         <Select
                             name="pref2"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                             options={this.state.matrix}
                         />
+                        <p>Preference 3</p>
                         <Select
                             name="pref3"
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                             options={this.state.matrix}
                         />
-                        <h2 className="blue">Payment</h2>
+                        <Button color="primary" onClick = {()=>{this.changeSection()}}>Next</Button>
+                            </section>
+                        ):(
+                        <section>
+                            <h2 className="blue">Payment</h2>
                         <p>
                             There is a basic registration of Rs. 1200 INR per delegate(For Domestic Delegates) and $ 85 USD per delegate(For NRI and Foreign national categories).<br />
                             You will be required to check your allotment on the website, jmimun.org. You will also be sent an email containing this information. <br />
@@ -314,12 +342,12 @@ export default class Register extends Component {
                             options={['Yes', 'No']}
                             onChange={(event: any) => { this.regInputHandler(event, this.state) }}
                         />
-                    </section>
-                </div>
-                <Button color="primary" onClick={() => { }}>
-                    Submit
-                </Button>
-            </div>
+                        <Button color="primary" onClick = {()=>{this.changeSection()}}>Next</Button>
+                        </section>
+                        )
+                    ))}
+                    </div>
+                    </div>
         )
     }
 

@@ -25,10 +25,8 @@ export default class UNGA extends Component {
     context!: React.ContextType<typeof AppContext>
     
     routeToRegister(){
-        console.log(this.context)
-        // this.context.actions.router('/register')
         this.context.actions.appState({committee:"unga"})
-        console.log(this.context)
+        this.context.actions.router('/register')
     }
     render() {
         return (

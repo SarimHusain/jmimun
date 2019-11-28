@@ -25,7 +25,7 @@ export default class Contact extends Component {
     render() {
         return (
             <div className="contact">
-                <div className="container">
+                <div className="container white">
                     <div className="title">
                         <h1>Contact Us</h1>
                     </div>

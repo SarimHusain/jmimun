@@ -4,15 +4,6 @@ import { Route } from 'react-router-dom'
 
 export default class AppContextProvider extends Component {
     state = {
-        ongoingAppTransition: false,
-        userAuthenticated: true,
-        users: {
-            personal: [{
-                name: String(),
-                email: String(),
-                phone: String(),
-            }]
-        },
         committee: String(),
     }
     appState = (setter: {} | ((prevState: Readonly<{}>, props: Readonly<{}>) => {} | Pick<{}, never> | null) | Pick<{}, never> | null,
@@ -32,7 +23,9 @@ export default class AppContextProvider extends Component {
                             appState: this.appState
                         }
                     }}
-                />
+                >{
+                    this.props.children
+                }</AppContext.Provider>
             )}
             />
         )

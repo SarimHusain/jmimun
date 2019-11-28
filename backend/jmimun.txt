@@ -1,9 +1,9 @@
 Todo - 
 
-Committee in registration, AppContext weird bug fix - 30m
+Committee in registration, AppContext weird bug fix - 30m - 15m done
+Registration data send
 Revisit env vars - 15m
-Contact endpoint - 5m - done
-Select styling - 15m
+Select styling - 15m - done, 20m
 Design changes - 1-2h
 
 Emails and stuff -  fetch from others

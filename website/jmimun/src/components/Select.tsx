@@ -12,7 +12,7 @@ export default class Select extends Component<SelectProps>{
     render() {
         return (
             <div className="select-container">
-                <select name={this.props.name}>
+                <select name={this.props.name} className="select" onChange={(event)=>{this.props.onChange(event)}}>
                     {
                         this.props.options.map(option => {
                             return (
