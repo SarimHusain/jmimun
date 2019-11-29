@@ -8,7 +8,12 @@ export default class Home extends Component {
     render() {
         return (
             <article className="home">
-                <div className="container" style={{ "height": "45em", "flexFlow": "column" }}>
+                <div className="container" 
+                    style={{ 
+                        height: "45em", flexFlow: "column",
+                        // backgroundColor: "#00b6f1"
+                    }}
+                >
                     <h1>Discern | Discuss | Debate</h1>
                     <h3>15<sup>th</sup> and 16<sup>th</sup> February</h3>
                     <div className="padding"></div>
@@ -20,13 +25,13 @@ export default class Home extends Component {
                                         appContext.actions.router('/committees')
                                     }}>
                                     Apply
-                  </Button>
+                                </Button>
                             )
                         }
                     </AppContext.Consumer>
                 </div>
 
-                <div className="container white" style={{ "height": "35em" }}>
+                <div className="container" style={{ "height": "35em" }}>
                     <section className="logo">
                         <img src="/img/home/jmilogo-black.png" width="50%" alt="" />
                     </section>
